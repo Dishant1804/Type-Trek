@@ -5,7 +5,7 @@ import CountdownTimer from './CountdownTimer';
 const TypingPage = () => {
 
     return (
-        <div className='h-screen grid place-content-center'>
+        <div className='pt-80 grid place-content-center'>
             <div>
                 <CountdownTimer/>
             </div>

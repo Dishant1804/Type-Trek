@@ -12,9 +12,9 @@ const Navlinks = () => {
 
 const Nav = () => {
     return (
-        <nav className='w-1/3'>
+        <nav className='w-1/3 pr-16'>
             <Router>
-                <div className='flex justify-between'>
+                <div className='flex justify-between text-primary-text-yellow'>
                     <Navlinks />
                 </div>
             </Router>

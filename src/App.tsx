@@ -4,7 +4,7 @@ import TypingPage from './components/TypingPage'
 function App() {
 
   return (
-    <div className='flex flex-col h-full'>
+    <div className='flex flex-col'>
       <Navbar/>
       <TypingPage/>
     </div>
