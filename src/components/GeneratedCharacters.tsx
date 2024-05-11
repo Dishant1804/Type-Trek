@@ -5,7 +5,7 @@ interface GeneratedCharactersProps {
 
 const GeneratedCharacters: React.FC<GeneratedCharactersProps> = ({characters}) => {
     
-    return <div className='text-slate-600 text-3xl w-[1080px] h-auto content-center'>
+    return <div className='text-slate-600'>
         {characters.map((char, index) => (
             <span key={index}>{char}</span>
         ))}

@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState, useRef } from 'react';
 
-const isKEyboardAllowed = (code: string) => {
+const isKeyboardAllowed = (code: string) => {
     return (
         code.startsWith("Key") ||
         code.startsWith("Digit") ||
@@ -16,7 +16,7 @@ const useTypings = (enabled: boolean) => {
     const totalTyped = useRef(0);
 
     const keydownHandler = useCallback(({ key, code }: KeyboardEvent) => {
-        if ((!enabled) || !isKEyboardAllowed(code)) {
+        if ((!enabled) || !isKeyboardAllowed(code)) {
             return;
         }
         switch (key) {
