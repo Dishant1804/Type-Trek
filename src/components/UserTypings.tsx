@@ -1,4 +1,5 @@
 import cn from 'classnames'
+import Caret from './Caret';
 interface UserTypingsProps {
     characters: string[]
     userInput: string
@@ -10,6 +11,7 @@ const UserTypings = ({ userInput, characters }: UserTypingsProps) => {
         {typedCharacters.map((char, index) => (
                 <Character key={`${char}_${index}`} actual={char} expected={characters[index]} />
         ))}
+        <Caret/>
     </div>  
 }
 
