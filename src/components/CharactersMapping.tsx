@@ -10,7 +10,7 @@ const CharactersMapping = () => {
 
     const characters = words.join(" ").split("");
 
-    return <div className='relative text-3xl w-[1080px] h-auto content-center'>
+    return <div className='relative text-3xl w-[1080px] h-auto content-center leading-relaxed break-all'>
         <GeneratedCharacters characters={characters} />
         <UserTypings characters={characters} userInput={typed} />
     </div>

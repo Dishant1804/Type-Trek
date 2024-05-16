@@ -3,7 +3,7 @@ interface GeneratedCharactersProps {
     characters: string[] 
 }
 
-const GeneratedCharacters: React.FC<GeneratedCharactersProps> = ({characters}) => {
+const GeneratedCharacters = ({characters} : GeneratedCharactersProps) => {
     
     return <div className='text-slate-600'>
         {characters.map((char, index) => (
