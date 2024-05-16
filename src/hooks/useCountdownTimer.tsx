@@ -41,7 +41,7 @@ const useCountdownTimer = (initialTime: number = 10) => {
 
     useEffect(() => {
         const handleKeyDown = (e: KeyboardEvent) => {
-            if (e.code === "Space" && !intervalRef.current) {
+            if (e.code === "space" && !intervalRef.current) {
                 startCountdown();
             }
         };
