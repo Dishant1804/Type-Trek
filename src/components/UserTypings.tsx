@@ -1,12 +1,18 @@
 import cn from 'classnames'
 import Caret from './Caret';
+import { useEffect, useMemo, useState } from 'react';
 interface UserTypingsProps {
     characters: string[]
     userInput: string
 }
 
 const UserTypings = ({ userInput, characters }: UserTypingsProps) => {
-    const typedCharacters = userInput.split('');
+    const [typedCharacters, setTypedCharacters] = useState<string[]>([]);
+    
+    useEffect(() => {
+        setTypedCharacters(userInput.split(''));
+    }, [userInput]);
+
     return <div className="absolute inset-0">
         {typedCharacters.map((char, index) => (
                 <Character key={`${char}_${index}`} actual={char} expected={characters[index]} />
@@ -23,7 +29,8 @@ const Character = ({ actual, expected }: { actual: string, expected: string }) =
         "text-red-500": !isCorrect && !isWhiteSpace,
         "text-primary-text-yellow ": isCorrect && !isWhiteSpace,
         "bg-red-500/50": !isCorrect && isWhiteSpace,
-    })}>{isWhiteSpace ? actual : expected}</span>
-}   
+    })}>{expected}</span>
+}
+
 
 export default UserTypings;

@@ -1,29 +1,33 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import useEngine from './useEngine';
 
-//TODO- fix the setstate as it causes both start countdown and reset countdown to run due to dependency array 
-
 const useCountdownTimer = (initialTime: number = 10) => {
     const [time, setTime] = useState<number>(initialTime);
     const intervalRef = useRef<number | null>(null);
     const { state, setState } = useEngine();
+    const stateRef = useRef(state);
+
+    useEffect(() => {
+        stateRef.current = state;
+    }, [state]);
 
     const startCountdown = useCallback(() => {
-        setState('run');
-        console.log(state);
         if (!intervalRef.current) {
+            setState('run');
             intervalRef.current = setInterval(() => {
                 setTime((prevCount) => {
                     if (prevCount === 0) {
                         if (intervalRef.current) {
                             clearInterval(intervalRef.current);
                             intervalRef.current = null;
+                            setState(prevState => prevState === 'run' ? 'finish' : prevState);
                         }
-                        setState('finish');
-                        console.log(state);
                         return prevCount;
                     }
-                    return prevCount - 1;
+                    if(stateRef.current === 'run'){
+                        return prevCount - 1;
+                    }
+                    return prevCount;
                 });
             }, 1000);
         }
@@ -31,7 +35,6 @@ const useCountdownTimer = (initialTime: number = 10) => {
 
     const resetCountdown = useCallback(() => {
         setState('start')
-        console.log(state);
         if (intervalRef.current) {
             clearInterval(intervalRef.current);
             intervalRef.current = null;
@@ -40,13 +43,20 @@ const useCountdownTimer = (initialTime: number = 10) => {
     }, [initialTime]);
 
     useEffect(() => {
+        console.log(state);
+    }, [state]);    
+
+    useEffect(() => {
         const handleKeyDown = (e: KeyboardEvent) => {
-            if (e.code && !intervalRef.current) {
+            if (e.code && !intervalRef.current && stateRef.current === 'start') {
                 startCountdown();
             }
         };
+        
 
-        document.addEventListener('keydown', handleKeyDown);
+        if(stateRef.current !== 'finish'){
+            document.addEventListener('keydown', handleKeyDown);
+        }
 
         return () => {
             document.removeEventListener('keydown', handleKeyDown);
