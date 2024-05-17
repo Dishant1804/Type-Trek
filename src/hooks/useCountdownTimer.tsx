@@ -1,6 +1,16 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import useEngine from './useEngine';
 
+const isKeyboardAllowed = (code: string) => {
+    return (
+        code.startsWith("Key") ||
+        code.startsWith("Digit") ||
+        code === "Backspace" ||
+        code === "Space" ||
+        code === "Minus"
+    );
+}
+
 const useCountdownTimer = (initialTime: number = 10) => {
     const [time, setTime] = useState<number>(initialTime);
     const intervalRef = useRef<number | null>(null);
@@ -48,7 +58,7 @@ const useCountdownTimer = (initialTime: number = 10) => {
 
     useEffect(() => {
         const handleKeyDown = (e: KeyboardEvent) => {
-            if (e.code && !intervalRef.current && stateRef.current === 'start') {
+            if (isKeyboardAllowed(e.code) && !intervalRef.current && stateRef.current === 'start') {
                 startCountdown();
             }
         };
@@ -67,7 +77,7 @@ const useCountdownTimer = (initialTime: number = 10) => {
         };
     }, [startCountdown]);
 
-    return { time, startCountdown, resetCountdown };
+    return { time, startCountdown, resetCountdown, stateRef , state };
 };
 
 export default useCountdownTimer;
