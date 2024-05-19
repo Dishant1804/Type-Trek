@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
-const INITIAL_WORDS = 20;
+const INITIAL_WORDS = 35;
 
 const useFetchWords = () => {
     const [words, setWords] = useState<string[]>([]);
@@ -19,7 +19,7 @@ const useFetchWords = () => {
         fetchData();
     }, [])
 
-    return { words }
+    return { words , fetchData }
 
 }
 

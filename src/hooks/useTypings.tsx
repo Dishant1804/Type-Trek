@@ -22,15 +22,15 @@ const useTypings = (enabled: boolean) => {
         switch (key) {
             case "Backspace":
                 setTyped((prev) => prev.slice(0, -1));
-                setCursor(cursor - 1);
+                setCursor(cursor => cursor - 1);
                 totalTyped.current -= 1;
                 break;
             default:
                 setTyped((prev) => prev.concat(key));
-                setCursor(cursor + 1);
+                setCursor(cursor => cursor + 1);
                 totalTyped.current += 1;
         }
-    }, [cursor, enabled]);
+    }, [cursor , enabled]);
 
     const clearTyped = useCallback(() => {
         setTyped("");
@@ -46,6 +46,7 @@ const useTypings = (enabled: boolean) => {
 
         return () => {
             window.removeEventListener('keydown', keydownHandler);
+            console.log(totalTyped);
         }
     }, [keydownHandler]);
 
