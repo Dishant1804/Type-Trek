@@ -6,7 +6,7 @@ import RestartButton from './RestartButton';
 
 
 const TypingPage = () => {
-    const {words,totalTyped , time , errorCount , setErrorCount ,restart} = useEngine();
+    const {words,totalTyped , time , errorCount , setErrorCount} = useEngine();
     const {state} = useEngine();
     
     return (
@@ -18,7 +18,7 @@ const TypingPage = () => {
                 <CharactersMapping words={words} setErrorCount={setErrorCount}/>
             </div>
             <div className='grid place-content-center w-[1260px]'>
-                <RestartButton onRestart={restart} />
+                <RestartButton/>
             </div>
             <div className='mt-8 '>
                 {state === 'finish' && (

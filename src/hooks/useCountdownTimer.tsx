@@ -8,7 +8,6 @@ const useCountdownTimer = (INITIAL_TIME : number) => {
 
 
     const startCountdown = useCallback(() => {
-        console.log("reached here");
         if (!isTimerEnded && !isRunning) {
             intervalRef.current = setInterval(() => {
                 setTime((prevCount) =>  prevCount - 1);
@@ -33,7 +32,7 @@ const useCountdownTimer = (INITIAL_TIME : number) => {
 
     useEffect(() => {
         return () => clearInterval(intervalRef.current!);
-      }, []);
+    }, []);
   
 
     return { time, startCountdown, resetCountdown };

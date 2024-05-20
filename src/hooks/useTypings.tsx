@@ -37,14 +37,14 @@ const useTypings = (isFinished : boolean) => {
         }
     }, [cursor]);
 
-    const clearTyped = useCallback(() => {
-        setTyped("");
-        setCursor(0);
-    }, [])
+    // const clearTyped = useCallback(() => {
+    //     setTyped("");
+    //     setCursor(0);
+    // }, [])
 
-    const resetTotalTyped = useCallback(() => {
-        totalTyped.current = 0;
-    }, [])
+    // const resetTotalTyped = useCallback(() => {
+    //     totalTyped.current = 0;
+    // }, [])
 
     useEffect(() => {
         window.addEventListener('keydown', keydownHandler);
@@ -57,8 +57,8 @@ const useTypings = (isFinished : boolean) => {
     return {
         typed,
         cursor,
-        clearTyped,
-        resetTotalTyped,
+        // clearTyped,
+        // resetTotalTyped,
         totalTyped: totalTyped.current,
     }
 }

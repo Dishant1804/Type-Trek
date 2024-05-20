@@ -1,14 +1,11 @@
-import { useRef } from "react";
 
-const RestartButton = ({onRestart : handleRestart } : {onRestart : ()=> void}) =>{
-    const buttonRef = useRef<HTMLButtonElement>(null);
+const RestartButton = () =>{
 
     const handleClick = () =>{
-        buttonRef.current?.blur();
-        handleRestart();
+        window.location.reload();
     }
 
-    return <button ref={buttonRef} onClick={handleClick} className="text-primary-text-yellow text-xl">
+    return <button onClick={handleClick} className="text-primary-text-yellow text-xl">
         Restart
     </button>
 }
