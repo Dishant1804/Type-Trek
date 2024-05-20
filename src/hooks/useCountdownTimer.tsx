@@ -1,83 +1,42 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import useEngine from './useEngine';
 
-const isKeyboardAllowed = (code: string) => {
-    return (
-        code.startsWith("Key") ||
-        code.startsWith("Digit") ||
-        code === "Backspace" ||
-        code === "Space" ||
-        code === "Minus"
-    );
-}
-
-const useCountdownTimer = (initialTime: number = 10) => {
-    const [time, setTime] = useState<number>(initialTime);
+const useCountdownTimer = (INITIAL_TIME : number) => {
+    const [time, setTime] = useState<number>(INITIAL_TIME);
     const intervalRef = useRef<number | null>(null);
-    const { state, setState } = useEngine();
-    const stateRef = useRef(state);
+    const isTimerEnded = time <= 0;
+    const isRunning = intervalRef.current != null;
 
-    useEffect(() => {
-        stateRef.current = state;
-    }, [state]);
 
     const startCountdown = useCallback(() => {
-        if (!intervalRef.current) {
-            setState('run');
+        console.log("reached here");
+        if (!isTimerEnded && !isRunning) {
             intervalRef.current = setInterval(() => {
-                setTime((prevCount) => {
-                    if (prevCount === 0) {
-                        if (intervalRef.current) {
-                            clearInterval(intervalRef.current);
-                            intervalRef.current = null;
-                            setState(prevState => prevState === 'run' ? 'finish' : prevState);
-                        }
-                        return prevCount;
-                    }
-                    if(stateRef.current === 'run'){
-                        return prevCount - 1;
-                    }
-                    return prevCount;
-                });
+                setTime((prevCount) =>  prevCount - 1);
             }, 1000);
         }
-    }, []);
+    }, [setTime , isTimerEnded , isRunning]);
 
     const resetCountdown = useCallback(() => {
-        setState('start')
         if (intervalRef.current) {
             clearInterval(intervalRef.current);
             intervalRef.current = null;
         }
-        setTime(initialTime);
-    }, [initialTime]);
+        setTime(INITIAL_TIME);
+    }, [INITIAL_TIME]);
 
-    useEffect(() => {
-        console.log(state);
-    }, [state]);    
-
-    useEffect(() => {
-        const handleKeyDown = (e: KeyboardEvent) => {
-            if (isKeyboardAllowed(e.code) && !intervalRef.current && stateRef.current === 'start') {
-                startCountdown();
-            }
-        };
-        
-
-        if(stateRef.current !== 'finish'){
-            document.addEventListener('keydown', handleKeyDown);
+    useEffect(()=>{
+        if(isTimerEnded && intervalRef.current){
+            clearInterval(intervalRef.current);
+            intervalRef.current = null;
         }
+    },[isTimerEnded]);
 
-        return () => {
-            document.removeEventListener('keydown', handleKeyDown);
-            if (intervalRef.current) {
-                clearInterval(intervalRef.current);
-                intervalRef.current = null;
-            }
-        };
-    }, [startCountdown]);
+    useEffect(() => {
+        return () => clearInterval(intervalRef.current!);
+      }, []);
+  
 
-    return { time, startCountdown, resetCountdown, stateRef , state };
+    return { time, startCountdown, resetCountdown };
 };
 
 export default useCountdownTimer;

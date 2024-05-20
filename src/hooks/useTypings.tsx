@@ -10,13 +10,18 @@ const isKeyboardAllowed = (code: string) => {
     );
 }
 
-const useTypings = (enabled: boolean) => {
+const useTypings = (isFinished : boolean) => {
     const [cursor, setCursor] = useState(0);
     const [typed, setTyped] = useState<string>("");
     const totalTyped = useRef(0);
+    const isFinishedRef = useRef(isFinished);
+
+    useEffect(() => {
+        isFinishedRef.current = isFinished;
+    }, [isFinished]);
 
     const keydownHandler = useCallback(({ key, code }: KeyboardEvent) => {
-        if ((!enabled) || !isKeyboardAllowed(code)) {
+        if (isFinishedRef.current ||!isKeyboardAllowed(code)) {
             return;
         }
         switch (key) {
@@ -30,7 +35,7 @@ const useTypings = (enabled: boolean) => {
                 setCursor(cursor => cursor + 1);
                 totalTyped.current += 1;
         }
-    }, [cursor , enabled]);
+    }, [cursor]);
 
     const clearTyped = useCallback(() => {
         setTyped("");
@@ -46,7 +51,6 @@ const useTypings = (enabled: boolean) => {
 
         return () => {
             window.removeEventListener('keydown', keydownHandler);
-            console.log(totalTyped);
         }
     }, [keydownHandler]);
 

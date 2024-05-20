@@ -23,12 +23,12 @@ const Result = ({errorCount , total} : { errorCount : number , total : number}) 
                 className="text-xl"
                 transition={{...duration , delay : 0.5}}
             >
-                Accuracy : {((total - errorCount)/total) * 100}%
+                Accuracy : {(((total - errorCount)/total) * 100).toFixed(0)}%
             </motion.li>
             <motion.li 
                 initial={initial}
                 animate={animate}
-                className="text-xl"
+                className="text-xl text-red-500"
                 transition={{...duration , delay : 1}}
             >
                 Errors : {errorCount}
