@@ -10,14 +10,14 @@ const TypingPage = () => {
     const {words,totalTyped , time , errorCount , setErrorCount , state , setInitialWords , typed , setTyped , restart} = useEngine();
     
     return (
-        <div className='mt-52 grid place-content-center'>
+        <div className='mt-32 grid place-content-center'>
             <div>
                 <Options 
                 setInitialWords={setInitialWords}
                 setTyped={setTyped}
                 state={state}/>
             </div>
-            <div className='mt-16'>
+            <div className='mt-40'>
                 <CountdownTimer time={time} />
             </div>
             <div className='relative text-3xl w-auto h-[250px] leading-relaxed break-all'>

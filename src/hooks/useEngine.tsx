@@ -15,7 +15,7 @@ const useEngine = () => {
   let {totalTyped} = useTypings(isFinished);
   const { words , setInitialWords , fetchData} = useFetchWords();
 
-  const arewordsFinished = cursor === words.join(' ').length;
+  const areWordsFinished = cursor === words.join(' ').length;
   const restart = useCallback(()=>{
     setTyped("");
     fetchData();
@@ -40,11 +40,11 @@ const useEngine = () => {
   }, [time, state]);
 
   useEffect(()=>{
-    if(arewordsFinished && cursor > 0 && state === 'run'){
+    if(areWordsFinished && cursor > 0 && state === 'run'){
       setState('finish');
       resetCountdown();
     }
-  },[cursor , arewordsFinished])
+  },[cursor , areWordsFinished])
 
   return { state, setState, typed, totalTyped, words, time , errorCount , setErrorCount , setInitialWords , setTyped , restart}
 }
