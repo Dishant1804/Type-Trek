@@ -17,7 +17,6 @@ const useFetchWords = () => {
     useEffect(() => {
         fetchData();
     }, [setInitialWords , initialWords])
-
     return { words , fetchData , setInitialWords }
 
 }

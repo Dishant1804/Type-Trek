@@ -7,7 +7,7 @@ import Options from './Options';
 
 
 const TypingPage = () => {
-    const {words,totalTyped , time , errorCount , setErrorCount , state , setInitialWords , typed , setTyped ,} = useEngine();
+    const {words,totalTyped , time , errorCount , setErrorCount , state , setInitialWords , typed , setTyped , restart} = useEngine();
     
     return (
         <div className='mt-52 grid place-content-center'>
@@ -27,7 +27,9 @@ const TypingPage = () => {
                 typed={typed}/>
             </div>
             <div className='grid place-content-center w-[1260px]'>
-                <RestartButton />
+                <RestartButton 
+                restart = {restart}
+                />
             </div>
             <div className='mt-8 '>
                 {state === 'finish' && (

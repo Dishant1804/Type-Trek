@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import useTypings from './useTypings';
 import useFetchWords from './useFetchwords';
 import useCountdownTimer from './useCountdownTimer';
@@ -11,10 +11,21 @@ const useEngine = () => {
   const [errorCount , setErrorCount] = useState<number>(0);
   const {time , startCountdown ,resetCountdown } = useCountdownTimer();
   const isFinished = state === 'finish'
-  const { typed, totalTyped, cursor , setTyped } = useTypings(isFinished);
-  const { words , setInitialWords } = useFetchWords();
+  const { typed, cursor , setTyped , setCursor} = useTypings(isFinished);
+  let {totalTyped} = useTypings(isFinished);
+  const { words , setInitialWords , fetchData} = useFetchWords();
 
   const arewordsFinished = cursor === words.join(' ').length;
+  const restart = useCallback(()=>{
+    setTyped("");
+    fetchData();
+    setCursor(0);
+    setState('start');
+    resetCountdown();
+    totalTyped = 0;
+  },[fetchData , setState , setTyped , resetCountdown , setCursor])
+
+
   useEffect(() => {
     if (state === 'start' && cursor > 0) {
       setState('run');
@@ -35,8 +46,7 @@ const useEngine = () => {
     }
   },[cursor , arewordsFinished])
 
-
-  return { state, setState, typed, totalTyped, words, time , errorCount , setErrorCount , setInitialWords , setTyped}
+  return { state, setState, typed, totalTyped, words, time , errorCount , setErrorCount , setInitialWords , setTyped , restart}
 }
 
 export default useEngine;

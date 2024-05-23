@@ -13,7 +13,7 @@ const isKeyboardAllowed = (code: string) => {
 const useTypings = (isFinished : boolean) => {
     const [cursor, setCursor] = useState(0);
     const [typed, setTyped] = useState<string>("");
-    const totalTyped = useRef(0);
+    let totalTyped = useRef(0);
     const isFinishedRef = useRef(isFinished);
 
     useEffect(() => {
@@ -49,7 +49,7 @@ const useTypings = (isFinished : boolean) => {
         typed,
         cursor,
         setTyped,
-        // resetTotalTyped,
+        setCursor,
         totalTyped: totalTyped.current,
     }
 }

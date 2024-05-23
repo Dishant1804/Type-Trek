@@ -20,8 +20,8 @@ const useCountdownTimer = () => {
             clearInterval(intervalRef.current);
             intervalRef.current = null;
         }
-        startCountdown();
-    }, [setTime, time]);
+        setTime(30);
+    }, []);
 
     useEffect(()=>{
         if(isTimerEnded && intervalRef.current){
