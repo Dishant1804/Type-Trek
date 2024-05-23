@@ -12,20 +12,28 @@ const TypingPage = () => {
     return (
         <div className='mt-52 grid place-content-center'>
             <div>
-                <Options setInitialWords={setInitialWords} setTyped={setTyped} state={state}/>
+                <Options 
+                setInitialWords={setInitialWords}
+                setTyped={setTyped}
+                state={state}/>
             </div>
             <div className='mt-16'>
                 <CountdownTimer time={time} />
             </div>
             <div className='relative text-3xl w-auto h-[250px] leading-relaxed break-all'>
-                <CharactersMapping words={words} setErrorCount={setErrorCount} typed={typed}/>
+                <CharactersMapping
+                words={words}
+                setErrorCount={setErrorCount}
+                typed={typed}/>
             </div>
             <div className='grid place-content-center w-[1260px]'>
                 <RestartButton />
             </div>
             <div className='mt-8 '>
                 {state === 'finish' && (
-                    <Result errorCount={errorCount} total={totalTyped}/>
+                    <Result 
+                    errorCount={errorCount}
+                    total={totalTyped}/>
                 )}
             </div>
         </div> 

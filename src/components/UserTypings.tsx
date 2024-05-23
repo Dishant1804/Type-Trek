@@ -5,7 +5,6 @@ interface UserTypingsProps {
     characters: string[],
     userInput: string,
     setErrorCount : React.Dispatch<React.SetStateAction<number>>,
-
 }
 
 const UserTypings = ({ userInput, characters, setErrorCount  }: UserTypingsProps) => {
@@ -27,7 +26,10 @@ const UserTypings = ({ userInput, characters, setErrorCount  }: UserTypingsProps
 
     return <div className="absolute inset-0">
         {typedCharacters.map((char, index) => (
-            <Character key={`${char}_${index}`} actual={char} expected={characters[index]}/>
+            <Character 
+            key={`${char}_${index}`} 
+            actual={char}
+            expected={characters[index]}/>
         ))}
         <Caret/>
     </div>  

@@ -2,7 +2,15 @@ import React from "react";
 
 type State = 'run' | 'finish' | 'start';
 
-const Options = ({ setInitialWords , setTyped , state }: { setInitialWords: React.Dispatch<React.SetStateAction<number>> , setTyped : React.Dispatch<React.SetStateAction<string>> , state : State}) => {
+const Options = ({
+    setInitialWords , 
+    setTyped ,
+    state
+    }: {  
+    setInitialWords: React.Dispatch<React.SetStateAction<number>> , 
+    setTyped : React.Dispatch<React.SetStateAction<string>> , 
+    state : State
+    }) => {
 
     const handleClickWords = (value: number) => {
         if(state !=='run'){
