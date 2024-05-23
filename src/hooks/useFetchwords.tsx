@@ -1,14 +1,13 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
-const INITIAL_WORDS = 35;
-
 const useFetchWords = () => {
     const [words, setWords] = useState<string[]>([]);
+    const [initialWords , setInitialWords] = useState<number>(20);
 
     const fetchData = async () => {
         try {
-            const response = await axios.get(`https://random-word-api.vercel.app/api?words=${INITIAL_WORDS}`)
+            const response = await axios.get(`https://random-word-api.vercel.app/api?words=${initialWords}`)
             setWords(response.data);
         }
         catch (error) {
@@ -17,9 +16,9 @@ const useFetchWords = () => {
     }
     useEffect(() => {
         fetchData();
-    }, [])
+    }, [setInitialWords , initialWords])
 
-    return { words , fetchData }
+    return { words , fetchData , setInitialWords }
 
 }
 

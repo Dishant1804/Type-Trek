@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 
-const useCountdownTimer = (INITIAL_TIME : number) => {
-    const [time, setTime] = useState<number>(INITIAL_TIME);
+const useCountdownTimer = () => {
+    const [time, setTime] = useState<number>(30);
     const intervalRef = useRef<number | null>(null);
     const isTimerEnded = time <= 0;
     const isRunning = intervalRef.current != null;
@@ -10,7 +10,7 @@ const useCountdownTimer = (INITIAL_TIME : number) => {
     const startCountdown = useCallback(() => {
         if (!isTimerEnded && !isRunning) {
             intervalRef.current = setInterval(() => {
-                setTime((prevCount) =>  prevCount - 1);
+                setTime((prevcount) =>  prevcount - 1);
             }, 1000);
         }
     }, [setTime , isTimerEnded , isRunning]);
@@ -20,8 +20,8 @@ const useCountdownTimer = (INITIAL_TIME : number) => {
             clearInterval(intervalRef.current);
             intervalRef.current = null;
         }
-        setTime(INITIAL_TIME);
-    }, [INITIAL_TIME]);
+        startCountdown();
+    }, [setTime, time]);
 
     useEffect(()=>{
         if(isTimerEnded && intervalRef.current){
@@ -35,7 +35,7 @@ const useCountdownTimer = (INITIAL_TIME : number) => {
     }, []);
   
 
-    return { time, startCountdown, resetCountdown };
+    return { time, startCountdown, resetCountdown};
 };
 
 export default useCountdownTimer;

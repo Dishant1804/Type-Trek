@@ -4,11 +4,11 @@ import { useEffect, useState } from 'react';
 interface UserTypingsProps {
     characters: string[],
     userInput: string,
-    setErrorCount : React.Dispatch<React.SetStateAction<number>> 
+    setErrorCount : React.Dispatch<React.SetStateAction<number>>,
 
 }
 
-const UserTypings = ({ userInput, characters, setErrorCount }: UserTypingsProps) => {
+const UserTypings = ({ userInput, characters, setErrorCount  }: UserTypingsProps) => {
     const [typedCharacters, setTypedCharacters] = useState<string[]>([]);
 
     useEffect(() => {

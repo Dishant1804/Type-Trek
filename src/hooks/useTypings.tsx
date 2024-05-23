@@ -28,7 +28,7 @@ const useTypings = (isFinished : boolean) => {
             case "Backspace":
                 setTyped((prev) => prev.slice(0, -1));
                 setCursor(cursor => cursor - 1);
-                totalTyped.current -= 1;
+                totalTyped.current = Math.max(0, totalTyped.current - 1);
                 break;
             default:
                 setTyped((prev) => prev.concat(key));
@@ -57,7 +57,7 @@ const useTypings = (isFinished : boolean) => {
     return {
         typed,
         cursor,
-        // clearTyped,
+        setTyped,
         // resetTotalTyped,
         totalTyped: totalTyped.current,
     }

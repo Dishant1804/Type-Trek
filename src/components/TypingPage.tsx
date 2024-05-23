@@ -3,22 +3,25 @@ import CharactersMapping from './CharactersMapping';
 import CountdownTimer from './CountdownTimer';
 import Result from './Result';
 import RestartButton from './RestartButton';
+import Options from './Options';
 
 
 const TypingPage = () => {
-    const {words,totalTyped , time , errorCount , setErrorCount} = useEngine();
-    const {state} = useEngine();
+    const {words,totalTyped , time , errorCount , setErrorCount , state , setInitialWords , typed , setTyped ,} = useEngine();
     
     return (
-        <div className='mt-60 grid place-content-center'>
+        <div className='mt-52 grid place-content-center'>
             <div>
-                <CountdownTimer time={time}/>
+                <Options setInitialWords={setInitialWords} setTyped={setTyped} state={state}/>
             </div>
-            <div className='relative text-3xl w-auto h-[300px] leading-relaxed break-all'>
-                <CharactersMapping words={words} setErrorCount={setErrorCount}/>
+            <div className='mt-16'>
+                <CountdownTimer time={time} />
+            </div>
+            <div className='relative text-3xl w-auto h-[250px] leading-relaxed break-all'>
+                <CharactersMapping words={words} setErrorCount={setErrorCount} typed={typed}/>
             </div>
             <div className='grid place-content-center w-[1260px]'>
-                <RestartButton/>
+                <RestartButton />
             </div>
             <div className='mt-8 '>
                 {state === 'finish' && (

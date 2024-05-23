@@ -1,10 +1,8 @@
 import GeneratedCharacters from './GeneratedCharacters';
 import UserTypings from './UserTypings';
-import useEngine from '../hooks/useEngine';
 
 
-const CharactersMapping = ({words , setErrorCount} : {words : string[] , setErrorCount : React.Dispatch<React.SetStateAction<number>>}) => {
-    const {typed} = useEngine();
+const CharactersMapping = ({words , setErrorCount , typed } : {words : string[] , setErrorCount : React.Dispatch<React.SetStateAction<number>> , typed : string }) => {
 
     const characters = words.join(" ").split("");
 
