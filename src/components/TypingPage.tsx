@@ -17,7 +17,7 @@ const TypingPage = () => {
                 setTyped={setTyped}
                 state={state}/>
             </div>
-            <div className='mt-40'>
+            <div className='mt-28'>
                 <CountdownTimer time={time} />
             </div>
             <div className='relative text-3xl w-auto h-[250px] leading-relaxed break-all'>
