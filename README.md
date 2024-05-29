@@ -28,7 +28,7 @@ To get the project up and running on your local machine, follow these steps:
     ```
 4. Start the local server:
     ```
-    npm start
+    npm run dev
     ```
 5. Open your web browser and visit `http://localhost:3000`.
 
