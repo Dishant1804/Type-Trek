@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, NavLink, Route, Routes } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart, faTerminal } from '@fortawesome/free-solid-svg-icons';
+// import { faGithub } from '@fortawesome/free-solid-svg-icons';
 import TypingPage from './components/TypingPage';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 
