@@ -30,7 +30,7 @@ To get the project up and running on your local machine, follow these steps:
     ```
     npm run dev
     ```
-5. Open your web browser and visit `http://localhost:3000`.
+5. Open your web browser and visit `http://localhost:5173`.
 
 ## Contributing
 We welcome contributions from the community. If you'd like to contribute, please fork the repository and make changes as you'd like. Pull requests are warmly welcome.
