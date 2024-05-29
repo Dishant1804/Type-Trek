@@ -20,7 +20,7 @@ const TypingPage = () => {
             <div className='mt-28'>
                 <CountdownTimer time={time} />
             </div>
-            <div className='relative text-3xl w-auto h-[250px] leading-relaxed break-all'>
+            <div className='relative text-3xl w-auto h-[275px] leading-relaxed break-all'>
                 <CharactersMapping
                 words={words}
                 setErrorCount={setErrorCount}

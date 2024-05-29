@@ -26,7 +26,6 @@ const Options = ({
                 <button className="hover:bg-slate-700 duration-200 h-6 w-6" onClick={() => handleClickWords(10)}>10</button>
                 <button className="hover:bg-slate-700 duration-200" onClick={() => handleClickWords(20)}>20</button>
                 <button className="hover:bg-slate-700 duration-200" onClick={() => handleClickWords(30)}>30</button>
-                <button className="hover:bg-slate-700 duration-200" onClick={() => handleClickWords(50)}>50</button>
             </div>
         </div>
     </div>
